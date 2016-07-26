@@ -1,8 +1,49 @@
 <html>
-  <head>
-    <link rel="stylesheet" href="/static/css/styles.css" type="text/css">
-  </head>
-  <body>
-    The best place to start is the "WelcomeController.py" file in app/controllers.
-  </body>
+<head>
+	<link rel="stylesheet" href="/static/css/styles.css" type="text/css">
+</head>
+<body>
+	<h2>Welcome!</h2>
+	<fieldset>
+		<legend>Register</legend>
+			<form action="/register" method="POST">
+				<p>Name: <input type="text" name="name"></p>
+				<p>Alias: <input type="text" name="alias"></p>
+				<p>Email: <input type="text" name="email"></p>
+				<p>Password: <input type="password" name="password"></p>
+				<p>Confirm PW: <input type="password" name="pw_confirmation"></p>
+				<p><input type="submit" name="submit" value="Submit"></p>
+			</form><br>
+		{% with messages = get_flashed_messages(with_categories=true) %}
+			{% if messages %}
+				<ul class=flashes>
+					{% for category, message in messages %}
+						{% if category == 'regis_errors' %}
+							<li>{{ message }}</li>
+						{% endif %}
+					{% endfor %}
+				</ul>
+			{% endif %}
+		{% endwith %}
+	</fieldset>
+	<fieldset>
+		<legend>Login</legend>
+			<form action="/login" method="POST">
+				<p>Email: <input type="text" name="email"></p>
+				<p>Password: <input type="password" name="password"></p>
+				<p><input type="submit" name="submit" value="Submit"></p>
+			</form><br>
+		{% with messages = get_flashed_messages(with_categories=true) %}
+			{% if messages %}
+				<ul class=flashes>
+					{% for category, message in messages %}
+						{% if category == 'login_errors' %}
+							<li>{{ message }}</li>
+						{% endif %}
+					{% endfor %}
+				</ul>
+			{% endif %}
+		{% endwith %}
+	</fieldset>
+</body>
 </html>
