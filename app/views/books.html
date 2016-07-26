@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Books Home</title>
+	<link rel="stylesheet" href="/static/css/styles.css" type="text/css">
+</head>
+<body>
+<h3>Welcome, {{ alias }}!</h3><br>
+<div class="left_header">
+<a href="/books/add">Add a Book and Review</a> &nbsp;|&nbsp; <a href="/clear">Logout</a><br></div>
+<fieldset id="left">
+	<legend>Recent Book Reviews:</legend>
+		{% for book in books_and_reviews%}
+			<a href="/books/{{ book['book_id'] }}">{{ book['title']}}</a>
+			<p>Rating: {{ book['rating'] }}</p>
+			<p><a href="/users/{{ book['user_id'] }}">{{ book['alias'] }}</a> says: {{ book['review'] }}</p><hr>
+		{% endfor %}
+</fieldset> 
+<fieldset>
+	<legend>Other Book Reviews</legend>
+	<div id="right">
+		{% for book in books %}
+			<p><a href="/books/{{ book['id'] }}">{{ book['title'] }}</a></p>
+		{% endfor %}
+	</div>	
+</fieldset>
+</body>
+</html>
