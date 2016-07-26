@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="/static/css/styles.css" type="text/css">
+
+</head>
+<body>
+<h1>{{ books[0]['title']}}</h1>
+<div class="left_header">
+	<a href="/books">Home</a>&nbsp;|&nbsp;<a href="/clear">Logout</a></div>
+<h3>Author: {{ books[0]['author'] }}</h3>
+	<br>
+<div id="reviews">
+	<h3>Reviews:</h3><hr>
+	{% for book in books %}	
+		<p>Rating: {{book['rating'] }}</p>
+		<p><a href="/users/{{ book['user_id'] }}">{{ book['alias']}}</a> says: {{ book['review'] }}</p>
+		{% if session['id'] == book['user_id'] %}
+		<p><a href="/delete/{{book['review_id']}}">Delete This Review</a></p>
+		{% endif %}
+		<hr>
+	{% endfor %}
+</div>
+<div id="add_review">
+	<h3>Add a Review:</h3><br>
+		<form action="/add_review/{{ books[0]['book_id'] }}" method="POST" id="book_form">
+			<input type="text" name="review"><br>
+			Rating:	<select name="rating" form="book_form">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+					</select>
+			<input type="submit" name="submit" value="Submit Review">
+		</form>
+	</div>
+</body>
+</html>
