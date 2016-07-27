@@ -10,9 +10,9 @@
 <a href="/books">Home</a>&nbsp;|&nbsp;<a href="/clear">Logout</a></div>
 	<h3>Add a New Book and Review</h3><br>
 	<form action="/books/add_book" id="book_form" method="POST">
-		Book Title: <input type="text" name="title"><br>
-		Author:<input type="text" name="author"><br>
-		Review:<input type="text" name="review"><br>
+		Book Title: <textarea type="text" name="title" id="book_form" rows="1" cols="50" autofocus></textarea><br>
+		Author:<textarea type="text" name="author" id="book_form" rows="1" cols="50"></textarea><br>
+		Review:<textarea type="text" name="review" id="book_form" rows="4" cols="50"></textarea><br>
 		Rating:	<select name="rating" form="book_form">
 					<option value="1">1</option>
 					<option value="2">2</option>
