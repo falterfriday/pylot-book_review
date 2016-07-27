@@ -6,10 +6,15 @@ fieldset {
 	vertical-align: top;
 
 }
-form {
+form.login {
 	text-align: right;
 	display: inline-block;
 }
+form {
+	vertical-align: top;
+	display: inline-block;
+	text-align: right;
+	}
 ul, span {
 	font-size: 0.8em;
 	color: red;
