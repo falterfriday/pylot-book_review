@@ -58,11 +58,14 @@ class Users(Controller):
 			return redirect('/')
 
 	def get_user_from_id(self, user_id):
-		info = {'user_id':user_id}
-		users = self.models['User'].get_user_from_id(info)
-		counts = self.models['User'].get_count_from_user_id(info)
-		books = self.models['User'].get_reviews_from_user_id(info)
-		return self.load_view('user.html', users=users, counts=counts, books=books)
+		if session == {}:
+			return redirect('/')
+		else:
+			info = {'user_id':user_id}
+			users = self.models['User'].get_user_from_id(info)
+			counts = self.models['User'].get_count_from_user_id(info)
+			books = self.models['User'].get_reviews_from_user_id(info)
+			return self.load_view('user.html', users=users, counts=counts, books=books)
 
 
 	def clear(self):
