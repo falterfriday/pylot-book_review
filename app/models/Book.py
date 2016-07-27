@@ -38,7 +38,7 @@ class Book(Model):
 		return self.db.query_db(query)
 
 	def get_book_by_id(self, info):
-		query = "SELECT *, reviews.id AS review_id FROM books JOIN reviews ON reviews.book_id = books.id JOIN users ON users.id = reviews.user_id WHERE book_id = :book_id"
+		query = "SELECT *, reviews.id AS review_id FROM books LEFT JOIN reviews ON reviews.book_id = books.id LEFT JOIN users ON users.id = reviews.user_id WHERE books.id = :book_id"
 		data = {'book_id':info['book_id']}
 		return self.db.query_db(query, data)
 
@@ -56,12 +56,14 @@ class Book(Model):
 		book_query = "SELECT * FROM reviews WHERE id = :review_id"
 		book_data = {'review_id':info['review_id']}
 		book_info = self.db.query_db(book_query, book_data)
-
 		query = "DELETE FROM reviews WHERE id = :review_id"
 		data = {'review_id':info['review_id']}
 		self.db.query_db(query, data)
-
-
 		return book_info
+
+	def delete_book(self, info):
+		query = "DELETE FROM books WHERE title = :title"
+		data = {'title': info['title']}
+		self.db.query_db(query, data)
 
 
